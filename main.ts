@@ -10,16 +10,22 @@ basic.forever(function () {
 
     getTemp()
     
-    maptemp = pins.map(ctemp, 0, 1023, 0, 360)
+    maptemp = pins.map(ctemp, 0, 1023, 0, 260)  //240で青色、0が赤
     
-    if (11111.5 <= ctemp && ctemp >= 11049.0) {
-        PixelArray.showColor(neopixel.hsl(maptemp, 0, 49))
-        PixelArray.show()
-    }
-    if (11111.5 >= ctemp && ctemp <= 11049.0) {
-        PixelArray.showColor(neopixel.hsl(maptemp, 0, 49))
-        PixelArray.show()
-    }
+    PixelArray.showColor(neopixel.hsl(maptemp, 0, 49))
+    PixelArray.show()
+
+    // if (11111.5 <= ctemp && ctemp >= 11049.0) {
+    //     PixelArray.showColor(neopixel.rgb(255, 0, 0))
+    //     PixelArray.show()
+    // }
+    // if (11111.5 >= ctemp && ctemp <= 11049.0) {
+    //     PixelArray.showColor(neopixel.rgb(0, 0, 255))
+    //     PixelArray.show()
+    // }
+
+    serial.writeNumber(maptemp)
+    serial.writeLine("")
 })
 
 function getTemp() {
